@@ -2,24 +2,33 @@
 
  {% block content %}
 
-  <h1>Lab 1 Assignment PBP/PBD</h1>
+  <h1 class="text-center">Lab 1 Assignment PBP/PBD</h1>
 
-  <h5>Name: </h5>
-  <p>Fill me!</p>
+  <h5 class="text-center">Name: Abdul Rafi</h5>
 
-  <h5>Student ID: </h5>
-  <p>Fill me!</p>
-
-  <table>
-    <tr>
-      <th>Item Name</th>
-      <th>Item Price</th>
-      <th>Item Stock</th>
-      <th>Rating</th>
-      <th>Description</th>
-      <th>Item URL</th>
-    </tr>
-    {% comment %} Add the data below this line {% endcomment %}
-  </table>
+  <h5 class="text-center">Student ID: 2106630113</h5>
+  
+  <div class="container">
+    <table class = "table table-bordered table-striped">
+      <tr>
+        <th>Item Name</th>
+        <th>Item Price</th>
+        <th>Item Stock</th>
+        <th>Rating</th>
+        <th>Description</th>
+        <th>Item URL</th>
+      </tr>
+      {% for katalog in katalogs %}
+      <tr>
+        <td>{{katalog.item_name}}</a></td>
+        <td>{{katalog.item_price}}</td>
+        <td>{{katalog.item_stock}}</td>
+        <td>{{katalog.rating}}</td>
+        <td>{{katalog.description}}</td>
+        <td>{{katalog.item_url}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
 
  {% endblock content %}
