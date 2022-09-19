@@ -10,7 +10,7 @@ class MywatchlistItem(models.Model):
       (2, "bad"),
       (1, "very bad")
     )
-    watched = models.BooleanField()
+    watched = models.BooleanField(default=False)
     title  = models.CharField(max_length=255)
     rating  = models.IntegerField(choices=RATING_CHOICES, null=True, blank=True)
     release_date  = models.DateField()
