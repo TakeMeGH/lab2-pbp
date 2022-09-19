@@ -3,7 +3,7 @@
       "model": "mywatchlist.MywatchlistItem",
       "pk": 1,
       "fields": {
-          "watched": "Sudah ditonton",
+          "watched": true,
           "title": "Moana",
           "rating": 5,
           "release_date": "2016-11-25",
@@ -14,29 +14,25 @@
     "model": "mywatchlist.MywatchlistItem",
     "pk": 2,
     "fields": {
-        "watched": "Belum ditonton",
+        "watched": false,
         "title": "Tukang Haji Naik Bubur",
-        "rating" : null,
-        "release_date": "2012-12-21",
-        "review": "Buburnya enak"
+        "release_date": "2012-12-21"
     }
   },
   {
     "model": "mywatchlist.MywatchlistItem",
     "pk": 3,
     "fields": {
-        "watched": "Belum ditonton",
+        "watched": false,
         "title": "Executor",
-        "rating" : null,
-        "release_date": "2012-12-22",
-        "review": "Gatau belom nonton"
+        "release_date": "2012-12-22"
     }
   },
   {
     "model": "mywatchlist.MywatchlistItem",
     "pk": 4,
     "fields": {
-        "watched": "Sudah ditonton",
+        "watched": true,
         "title": "Cinta Fitri",
         "rating" : 5,
         "release_date": "2010-05-22",
@@ -47,7 +43,7 @@
     "model": "mywatchlist.MywatchlistItem",
     "pk": 5,
     "fields": {
-        "watched": "Sudah ditonton",
+        "watched": true,
         "title": "Kijang vs Inova",
         "rating" : 1,
         "release_date": "2013-04-13",
@@ -58,7 +54,7 @@
     "model": "mywatchlist.MywatchlistItem",
     "pk": 6,
     "fields": {
-        "watched": "Sudah ditonton",
+        "watched": true,
         "title": "Stealing Picasso",
         "rating" : 3,
         "release_date": "2022-01-10",
@@ -69,40 +65,36 @@
     "model": "mywatchlist.MywatchlistItem",
     "pk": 7,
     "fields": {
-        "watched": "Belum ditonton",
+        "watched": false,
         "title": "Dibalik 89",
-        "release_date": "1989-05-10",
-        "review": "Berasa banget semangat perjuangannya"
+        "release_date": "1989-05-10"
     }
   },
   {
     "model": "mywatchlist.MywatchlistItem",
     "pk": 8,
     "fields": {
-        "watched": "Belum ditonton",
+        "watched": false,
         "title": "My Name",
-        "release_date": "2017-04-05",
-        "review": "Sedih banget"
+        "release_date": "2017-04-05"
     }
   },
   {
     "model": "mywatchlist.MywatchlistItem",
     "pk": 9,
     "fields": {
-        "watched": "Belum ditonton",
+        "watched": false,
         "title": "World War Y",
-        "release_date": "2013-11-11",
-        "review": "Horornya berasa banget"
+        "release_date": "2013-11-11"
     }
   },
   {
     "model": "mywatchlist.MywatchlistItem",
     "pk": 10,
     "fields": {
-        "watched": "Belum ditonton",
+        "watched": false,
         "title": "Sedap Sedap Ngeri",
-        "release_date": "2022-08-10",
-        "review": "Belum nonton"
+        "release_date": "2022-08-10"
     }
   }
 ]
