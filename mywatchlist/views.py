@@ -9,8 +9,8 @@ def show_mywatchlist(request):
     banyak_ditonton = 0
     for obj in watchlistItem:
         banyak_ditonton += obj.watched == True
+        print(obj.watched, "DEBUG")
     is_banyak_tonton = (banyak_ditonton * 2 >= len(watchlistItem))
-    print(obj.watched, "DEBUG")
     konteks = {
         "watchlistItem" : watchlistItem,
         "is_banyak_tonton" : is_banyak_tonton,
