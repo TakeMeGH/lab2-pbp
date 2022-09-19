@@ -19,6 +19,7 @@ Pada awalnya client akan melakukan request pada web. Request yang dilakukan akan
 * Langkah ketiga, catak data katalog dari data yang sudah diberikan pada langkah pertama. Kita dapat melakukan ini dengan bantuan Django template language. Django template language memungkinkan kita untuk meiterasi data yang sudah diberikan dan mencetaknya dalam bentuk html.
 * Langkah keempat, kita perlu membuat app baru pada heroku. Kemudian menambahkan secret key pada github repo yang sudah dibuat. Terakhir setelah kita lakukan push .github/workflows akan melakukan deployment di Heroku.
 
+## Tugas 3
 
 
 ## Credits

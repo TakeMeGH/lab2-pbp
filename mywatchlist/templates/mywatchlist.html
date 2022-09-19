@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+ {% block content %}
+
+  <h1 class="text-center">Tugas 3 Assignment PBP/PBD</h1>
+
+  <h5 class="text-center">Name: Abdul Rafi</h5>
+
+  <h5 class="text-center">Student ID: 2106630113</h5>
+  
+  <div class="container">
+    <table class = "table table-bordered table-striped">
+      <tr>
+        <th>Status Film</th>
+        <th>Judul Film</th>
+        <th>Rating Film</th>
+        <th>Jadwal Rilis</th>
+        <th>Review</th>
+      </tr>
+      {% for each in watchlistItem %}
+      <tr>
+        <td>{{each.watched}}</a></td>
+        <td>{{each.title}}</td>
+        <td>{{each.rating}}</td>
+        <td>{{each.release_date}}</td>
+        <td>{{each.review}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  {% if is_banyak_tonton %}
+    <h1 class="text-center">Selamat, kamu sudah banyak menonton!</h1>
+  {% else %}
+    <h1 class="text-center">Wah, kamu masih sedikit menonton!</h1>
+  {% endif %}
+ {% endblock content %}
