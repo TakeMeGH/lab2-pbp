@@ -3,7 +3,7 @@
       "model": "mywatchlist.MywatchlistItem",
       "pk": 1,
       "fields": {
-          "watched": 1,
+          "watched": true,
           "title": "Moana",
           "rating": 5,
           "release_date": "2016-11-25",
@@ -14,11 +14,11 @@
     "model": "mywatchlist.MywatchlistItem",
     "pk": 2,
     "fields": {
-        "watched": 0,
+        "watched": false,
         "rating": null,
         "title": "Tukang Haji Naik Bubur",
         "release_date": "2012-12-21",
-        "review" : ""
+        "review" : "No review yet"
     }
   },
   {
@@ -28,7 +28,7 @@
         "watched": false,
         "title": "Executor",
         "release_date": "2012-12-22",
-        "review" : ""
+        "review" : "No review yet"
 
     }
   },
@@ -72,7 +72,7 @@
         "watched": false,
         "title": "Dibalik 89",
         "release_date": "1989-05-10",
-        "review" : ""
+        "review" : "No review yet"
 
     }
   },
@@ -83,7 +83,7 @@
         "watched": false,
         "title": "My Name",
         "release_date": "2017-04-05",
-        "review" : ""
+        "review" : "No review yet"
 
     }
   },
@@ -94,7 +94,7 @@
         "watched": false,
         "title": "World War Y",
         "release_date": "2013-11-11",
-        "review" : ""
+        "review" : "No review yet"
 
     }
   },
@@ -105,7 +105,7 @@
         "watched": false,
         "title": "Sedap Sedap Ngeri",
         "release_date": "2022-08-10",
-        "review" : ""
+        "review" : "No review yet"
     }
   }
 ]
