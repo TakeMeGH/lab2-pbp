@@ -3,7 +3,7 @@
       "model": "mywatchlist.MywatchlistItem",
       "pk": 1,
       "fields": {
-          "watched": true,
+          "watched": 1,
           "title": "Moana",
           "rating": 5,
           "release_date": "2016-11-25",
@@ -14,7 +14,7 @@
     "model": "mywatchlist.MywatchlistItem",
     "pk": 2,
     "fields": {
-        "watched": false,
+        "watched": 0,
         "rating": null,
         "title": "Tukang Haji Naik Bubur",
         "release_date": "2012-12-21",
