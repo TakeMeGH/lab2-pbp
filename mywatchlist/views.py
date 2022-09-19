@@ -8,7 +8,6 @@ def show_mywatchlist(request):
     watchlistItem = MywatchlistItem.objects.all()
     banyak_ditonton = 0
     for obj in watchlistItem:
-        obj.full_clean()
         banyak_ditonton += obj.watched == True
     is_banyak_tonton = (banyak_ditonton * 2 >= len(watchlistItem))
     konteks = {
@@ -25,8 +24,4 @@ def show_xml(request):
 def show_json(request):
     data = MywatchlistItem.objects.all()
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
-
-
-
-    return render(request, 'mywatchlist.html', konteks)
 
