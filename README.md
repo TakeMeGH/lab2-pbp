@@ -1,49 +1,61 @@
-### https://lab02-pbp-abdul.herokuapp.com/
-## Tugas 2
-1. 
-```mermaid
-flowchart TD
-A[Client] --> |Request|B(urls.py)
-B --> |pilih view| C[views.py]
-C <-->|Meminta data| D[models.py]
-C -->|Pilih HTML| E[html]
-E <--> A
-```
-Pada awalnya client akan melakukan request pada web. Request yang dilakukan akan terhubung langsung pada url yang dimintai request. Url tersebut akan memilih view yang digunakan pada url tersebut. View akan meminta data pada models jika diperlukan dan merender view tersebut dengan HTML. HTML yang telah dirender merupakan output diweb tersebut yang dapat dilihat.
+# Template Proyek Django PBP
 
-2.Kita mengunakan virtual environment agar requirements yang diperlukan untuk project kita dapat berjalan. Kita bisa saja menjalankan tanpa virtual environment namun, ini adalah *bad practice* karena project kita biasanya tidak hanya berjalan disistem lokal kita saja. Maka ada baiknya untuk mengunakan virtual environment agar kita menginstall ulang semua requirements yang diperlukan.
+Pemrograman Berbasis Platform (CSGE602022) - diselenggarakan oleh Fakultas Ilmu Komputer Universitas Indonesia, Semester Ganjil 2022/2023
 
-3.Berikut penjelasan untuk setiap langkah :
-* Langkah pertama saya mengimport model CatalogItem kemudian pengambil semua data yang berada pada CatalogItem. Kemudian kita merender berdasarkan katalog.html (html yang sudah dibuat untuk views ini) dan juga data yang diambil dari data CatalogItem.
-* Langkah kedua saya menambahkan routing dari urls.py yang berada di project_django agar terhubung ke urls.py yang berada pada folder katalog. Kemudian saya menambahkan root yang ingin digunakan untuk merender views yang ada pada langkah pertama.
-* Langkah ketiga, catak data katalog dari data yang sudah diberikan pada langkah pertama. Kita dapat melakukan ini dengan bantuan Django template language. Django template language memungkinkan kita untuk meiterasi data yang sudah diberikan dan mencetaknya dalam bentuk html.
-* Langkah keempat, kita perlu membuat app baru pada heroku. Kemudian menambahkan secret key pada github repo yang sudah dibuat. Terakhir setelah kita lakukan push .github/workflows akan melakukan deployment di Heroku.
+*Read this in other languages: [Indonesian](README.md), [English](README.en.md)*
 
-## Tugas 3
-* Json adalah format data standard. Json memiliki kepanjangan JavaScript Object Notation. XML merupakan format data standard. XML memiliki kepanjangan extensible markup language. HTML sendiri adalah bahasa markup yang digunakan pada web. Berdasarkan definisi HTML sudah berbeda dengan json atau XML. Hal ini dikarenakan HTML bukanlah suatu format data standard. Json dan XML memiliki beberapa perbedaaan :
-    * Json dapat berupa array sedangkan XML tidak
-    * XML lebih aman dibandingkan json
-    * Json hanya mensuport utf-8 encoding sedangkan, XMl mensuport berabagai macam encoding
-* Kita memerlukan data delivery agar kita dapat menghubungkan beberapa framework karena, setiap framework memiliki cara menyimpan atau menerima data yang berbeda maka perlu adanya format data standar untuk menghubungkan antar framework. Hal ini perlu dilakukan agar suatu web / mobile app dapat menjalankan fungsinya dengan baik
-* Pertama saya membuat app baru dengan nama mywatchlist. Kedua saya mebuat urls.py pada app baru saya. Ketiga membuat model sebagai berikut
-    * watched : BooleanField
-    * title : CharField
-    * rating : IntegerField
-    * release_date : DateField
-    * review : TextField
+## Pendahuluan
 
-    kemudian saya membuat views berdasarkan model tersebut dan merendernya ke html supaya data bisa ditampilkan. Setelah itu buat views tambahan agar bisa menampilkan dalam bentuk json dan XML
+Repositori ini merupakan sebuah template yang dirancang untuk membantu mahasiswa yang sedang mengambil mata kuliah Pemrograman Berbasis Platform (CSGE602022) mengetahui struktur sebuah proyek aplikasi Django serta file dan konfigurasi yang penting dalam berjalannya aplikasi. Kamu dapat dengan bebas menyalin isi dari repositori ini atau memanfaatkan repositori ini sebagai pembelajaran sekaligus awalan dalam membuat sebuah proyek Django.
 
-* Postman :
+## Cara Menggunakan
 
-**HTML**
-![Screenshot-2022-09-20-085551.png](https://i.postimg.cc/mkH2XDcd/Screenshot-2022-09-20-085551.png)
+Apabila kamu ingin menggunakan repositori ini sebagai repositori awalan yang nantinya akan kamu modifikasi:
 
-**json**
-[![Screenshot-2022-09-20-085613.png](https://i.postimg.cc/htq0cZBj/Screenshot-2022-09-20-085613.png)](https://postimg.cc/KRJT5N4S)
+1. Buka laman GitHub repositori templat kode, lalu klik tombol "**Use this template**"
+   untuk membuat salinan repositori ke dalam akun GitHub milikmu.
+2. Buka laman GitHub repositori yang dibuat dari templat, lalu gunakan perintah
+   `git clone` untuk menyalin repositorinya ke suatu lokasi di dalam sistem
+   berkas (_filesystem_) komputermu:
 
-**XML**
-[![Screenshot-2022-09-20-085630.png](https://i.postimg.cc/C5kf2Yd4/Screenshot-2022-09-20-085630.png)](https://postimg.cc/PvfxLgWL)
+   ```shell
+   git clone <URL ke repositori di GitHub> <path ke suatu lokasi di filesystem>
+   ```
+3. Masuk ke dalam repositori yang sudah di-_clone_ dan jalankan perintah berikut
+   untuk menyalakan _virtual environment_:
+
+   ```shell
+   python -m venv env
+   ```
+4. Nyalakan environment dengan perintah berikut:
+
+   ```shell
+   # Windows
+   .\env\Scripts\activate
+   # Linux/Unix, e.g. Ubuntu, MacOS
+   source env/bin/activate
+   ```
+5. Install dependencies yang dibutuhkan untuk menjalankan aplikasi dengan perintah berikut:
+
+   ```shell
+   pip install -r requirements.txt
+   ```
+
+6. Jalankan aplikasi Django menggunakan server pengembangan yang berjalan secara
+   lokal:
+
+   ```shell
+   python manage.py runserver
+   ```
+7. Bukalah `http://localhost:8000` pada browser favoritmu untuk melihat apakah aplikasi sudah berjalan dengan benar.
+
+## Contoh Deployment 
+
+Pada template ini, deployment dilakukan dengan memanfaatkan GitHub Actions sebagai _runner_ dan Heroku sebagai platform Hosting aplikasi. 
+
+Untuk melakukan deployment, kamu dapat melihat instruksi yang ada pada [Tutorial 0](https://pbp-fasilkom-ui.github.io/ganjil-2023/assignments/tutorial/tutorial-0).
+
+Untuk contoh aplikasi Django yang sudah di deploy, dapat kamu akses di [https://django-pbp-template.herokuapp.com/](https://django-pbp-template.herokuapp.com/)
 
 ## Credits
 
