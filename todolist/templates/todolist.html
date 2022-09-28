@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+ {% block content %}  
+ <h3 class="text-center">Todolist {{nama}}</h3>
+  <div class="container">
+    <table class = "table table-bordered table-striped">
+      <tr>
+        <th>Tanggal Dibuat</th>
+        <th>Judul</th>
+        <th>Deskripsi</th>
+        <th>Status Pekerjaan</th>
+        <th>Hapus Data</th>
+        <th>Ganti Status</th>
+      </tr>
+      {% for each in todolist %}
+      <tr>
+        <td>{{each.date}}</td>
+        <td>{{each.title}}</td>
+        <td>{{each.description}}</td>
+        <td>{{each.is_finished}}</td>
+        <td>
+          <a href="{% url 'todolist:hapus_task' each.id %}" class="btn btn-danger">Hapus</a>
+        </td>
+        <td>
+          <a href="{% url 'todolist:ganti_status' each.id %}" class="btn btn-primary">Ganti</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col text-center">
+        <button class="btn btn-link"><a href="{% url 'todolist:logout' %}">Logout</a></button>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

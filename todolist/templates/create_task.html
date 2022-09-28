@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3 class="text-center">Tambahkan hal yang akan anda lakukan</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            {% if pesan %}
+                <div class="alert alert-success">{{pesan}}</div>
+            {% endif %}
+            <form action="/todolist/create-task/" method="post">
+                {% csrf_token %}
+                {{form.as_table}}
+                <br>
+                <button class="btn btn-primary">Tambah list</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
