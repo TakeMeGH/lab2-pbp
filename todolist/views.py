@@ -1,13 +1,16 @@
+from urllib import request
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse, HttpResponseNotFound, JsonResponse
 from django.urls import reverse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.views import View
 import datetime
 from django.shortcuts import redirect
+from django.core import serializers
 
 from todolist.forms import FormTodolist
 from todolist.models import TodolistItem
@@ -15,9 +18,12 @@ from todolist.models import TodolistItem
 @login_required(login_url='/todolist/login/')
 def show_todolist(request):
   todolist_data = TodolistItem.objects.filter(user=request.user)
+ 
+  form = FormTodolist()
   context = {
     'nama' : request.user.username,
     'todolist' : todolist_data,
+    "form" : form,
   }
   return render(request, "todolist.html", context)
 
@@ -34,7 +40,7 @@ def create_more_task(request):
 
       konteks = {
           "form" : form,
-           "pesan" : pesan,
+          "pesan" : pesan,
       }
       render(request, "create_task.html", konteks)
   else:
@@ -43,6 +49,30 @@ def create_more_task(request):
        "form" : form,
     }
   return render(request, "create_task.html", konteks)
+
+@login_required(login_url='/todolist/login/')
+def add(request):
+    if request.method == 'POST':
+        description = request.POST.get("description")
+        title = request.POST.get("title")
+
+        new_barang = TodolistItem(user=request.user, description=description, title=title)
+        new_barang.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()
+
+@login_required(login_url='/todolist/login/')
+def delete(request, id):
+    todolist_data = TodolistItem.objects.filter(id=id)
+    todolist_data.delete()
+    return HttpResponseRedirect('/todolist')
+
+@login_required(login_url='/todolist/login/')
+def get_todolist_json(request):
+    todolist_item = TodolistItem.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize('json', todolist_item))
 
 def register(request):
     form = UserCreationForm()

@@ -3,16 +3,16 @@
  {% block content %}  
  <h3 class="text-center">Todolist {{nama}}</h3>
  <div class="container">
-    <div class="row g-3">
+    <div class="row g-3" id="isi_card">
         {% for each in todolist %}
-        <div class="col-12 col-sm-6 col-lg-4 py-3">
+        <!-- <div class="col-12 col-sm-6 col-lg-4 py-3">
           <div class="bg-image hover-overlay">
             <div class="card-group">
               <div class="card card-primary text-center">
                 <h5 class="card-header">{{each.title}}</h5>
-                <a href="https://imgbb.com/"><img src="https://i.ibb.co/xXX4S2Q/to-do-list-2.png" alt="to-do-list-2" border="0" width="200" height="200"></a>
-                <div class="card-body">
-                  <h5 class="card-title">{{each.description}}</h5>
+                <img class="rounded mx-auto d-block" src="https://i.ibb.co/xXX4S2Q/to-do-list-2.png" alt="to-do-list-2" border="2" width="200" height="200">
+                <div class="card-body" id="card-body-pertama"> -->
+                  <!-- <h5 class="card-title">{{each.description}}</h5>
                   <p class="card-text">{{each.date}}</p>
                   {% if each.is_finished %}
                     <p class="text-center">Status : Sudah Selesai!</p>
@@ -20,21 +20,131 @@
                     <p class="text-center">Status : Belum Selesai!</p>
                   {% endif %}
                   <a href="{% url 'todolist:hapus_task' each.id %}" class="btn btn-danger">Hapus</a>
-                  <a href="{% url 'todolist:ganti_status' each.id %}" class="btn btn-primary">Ganti</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+                  <a href="{% url 'todolist:ganti_status' each.id %}" class="btn btn-primary">Ganti</a> -->
+              
       {% endfor %}
     </div>
   </div>
   <div class="container">
     <div class="row">
       <div class="col text-center">
-        <a href="{% url 'todolist:create_more_task' %}" class="btn btn-primary">Buat Task</a>
+        <a href="{% url 'todolist:create_more_task' %}" id="create-more-task" class="btn btn-primary">Buat Task</a>
         <a href="{% url 'todolist:logout' %}" class="btn btn-danger">Logout</a>
       </div>
     </div>
   </div>
+</div>
+
+<!-- Button trigger modal -->
+<div class="container py-3">
+  <div class="row">
+    <div class="col text-center">
+      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+        Buat task langsung
+      </button>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <form id="form-1" onsubmit="return false;">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Membuat Todolist</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h3 class="text-center">Tambahkan hal yang akan anda lakukan</h3>
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-4">
+                      {% if pesan %}
+                          <div class="alert alert-success">{{pesan}}</div>
+                      {% endif %}
+                      {% csrf_token %}
+                      {{form.as_table}}
+                      <br>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button class="btn btn-primary" id="button" type="submit" value="Submit" data-dismiss="modal"
+          >Buat task</button>
+        </div>
+      </div>
+    </div>
+</form>
+</div>
+<script>
+  async function getTodolist() {
+    return fetch("{% url 'todolist:get_todolist_json' %}").then((res) => res.json())
+  }
+
+  async function refreshWishlist() {
+    document.getElementById("isi_card").innerHTML = ""
+    const todolist = await getTodolist()
+    let htmlString = ``
+    todolist.forEach((item) => {
+      htmlString += `
+      <div class="col-12 col-sm-6 col-lg-4 py-3 id=card${item.pk}">
+        <div class="bg-image hover-overlay">
+          <div class="card-group">
+            <div class="card card-primary text-center">
+              <h5 class="card-header">{{each.title}}</h5>
+              <img class="rounded mx-auto d-block" src="https://i.ibb.co/xXX4S2Q/to-do-list-2.png" alt="to-do-list-2" border="2" width="200" height="200">
+               <div class="card-body" id="card-body-pertama">
+      `
+      htmlString += `
+      <h5 class="card-title">${item.fields.description}</h5>
+      <p class="card-text">${item.fields.date}</p>
+      <p class="card-text">${item.fields.is_finished}</p>
+      <form action="delete/${item.pk}" method="post" id="delete_form_${item.pk}">
+        {% csrf_token %}
+        <input type="button" class='btn btn-danger my-1' onclick="submit_delete(${item.pk})" value="delete">
+      </form></td>      
+      <a href="ganti-status/${item.pk}" class="btn btn-primary">Ganti</a>`
+      htmlString += `
+               </div>
+            </div>
+          </div>
+         </div>
+      </div>
+      `
+      console.log(item)
+    })  
+    document.getElementById("isi_card").innerHTML = htmlString
+  }
+  async function addWishlist() {
+    fetch("{% url 'todolist:add' %}", {
+      method: "POST",
+      body: new FormData(document.querySelector('#form-1'))
+    }).then(refreshWishlist)
+    return false
+  }
+
+  async function submit_delete(id) {
+    console.log('#card'+id)
+      $.ajax({
+          type: $('#delete_form_'+id).attr('method'),
+          url: $('#delete_form_'+id).attr('action'),
+          data: $('#delete_form_'+id).serialize(),
+          success: function (data) {
+              $('#card'+id).remove().then()
+          }
+      }).then((response) => {
+        refreshWishlist()
+        return response
+      });
+  }
+
+  document.getElementById("button").onclick = addWishlist 
+  refreshWishlist()
+</script>
 {% endblock content %}

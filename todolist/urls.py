@@ -12,4 +12,9 @@ urlpatterns = [
   path('create-task/', create_more_task, name='create_more_task'),
   path('hapus-task/<int:id_task>', hapus_task, name="hapus_task"),
   path('ganti-status/<int:id_task>', ganti_status, name="ganti_status"),
+  path('json/', get_todolist_json, name="get_todolist_json"),
+  path('add/', add, name="add"),
+  path('delete/<int:id>', delete, name="delete"),
+
+
 ]

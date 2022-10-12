@@ -9,3 +9,7 @@ body{
 .card-group .card-primary:hover .card-title{
     color: #4e22d0;
 }
+.modal-backdrop
+{
+    opacity:0.5 !important;
+}
