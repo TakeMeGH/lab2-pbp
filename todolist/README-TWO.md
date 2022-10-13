@@ -1,0 +1,7 @@
+## Link Website
+HEROKU : [link](https://lab02-pbp-abdul.herokuapp.com/)
+## Tugas 6
+* Pada synchronous programming user harus menunggu suatu program menyelesaikan tasknya untuk melakukan task yang lain. Asynchronous programming memungkinkan user untuk melakukan task yang lain pada saat program sedang menyelesaikan suatu task.
+* Even driven programming adalah suatu paradigma pemprograman yang alur programnya ditentukan oleh event seperti aksi user. Salah satu contoh penerapan pada tugas ini adalah digunakannya onclick. Hal ini berarti suatu fungsi akan berjalan ketika suatu button diclick
+* Javascript client-side programming hal ini memungkinkan dilakukan Asynchronous programming. Asynchronous programming ini dapat diterapkan dengan ajax. Ajax memungkinkan melakukan operasi pada client-side sehingga tidak harus mengekesekusi kode pada server.
+* Untuk membuat fungsi get kita harus membuat bagian script pada file todolist.html. Kita buat sebuah async function yang akan me-fetch data dari url yang sudah diubah menjadi json. Kemudian dengan DOM kita dapat mengubah html yang berada didalam tabel. Untuk membuat fungsi post kita dapat memfetch views yang berfungsi untuk menambahkan data. Kemudian kita akan menselect form yang telah dibuat pada modal. Untuk fungsi delete kita perlu menambahkan url baru untuk mendelete card tersebut. Kemudian kita menselect id dari dari card yang akan dihapus serta meremove data tersebut dari data tersebut. setelah penghapusan kita lakukan refresh agar card yang tersedia terupdate kembali.
