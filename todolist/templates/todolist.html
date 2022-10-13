@@ -74,7 +74,7 @@
     return fetch("{% url 'todolist:get_todolist_json' %}").then((res) => res.json())
   }
 
-  async function refreshWishlist() {
+  async function refreshTodolist() {
     document.getElementById("isi_card").innerHTML = ""
     const todolist = await getTodolist()
     let htmlString = ``
@@ -84,17 +84,23 @@
         <div class="bg-image hover-overlay">
           <div class="card-group">
             <div class="card card-primary text-center">
-              <h5 class="card-header">{{each.title}}</h5>
+              <h5 class="card-header">${item.fields.title}</h5>
               <img class="rounded mx-auto d-block" src="https://i.ibb.co/xXX4S2Q/to-do-list-2.png" alt="to-do-list-2" border="2" width="200" height="200">
                <div class="card-body" id="card-body-pertama">
       `
       htmlString += `
       <h5 class="card-title">${item.fields.description}</h5>
-      <p class="card-text">${item.fields.date}</p>
-      <p class="card-text">${item.fields.is_finished}</p>
-      <form action="delete/${item.pk}" method="post" id="delete_form_${item.pk}">
+      <p class="card-text">${item.fields.date}</p>`
+      // <p class="card-text">${item.fields.is_finished}</p>
+      if (item.fields.is_finished){
+        htmlString += `<p class="card-text">Sudah selsai</p>`
+      }
+      else{
+        htmlString += `<p class="card-text">Belum selesai</p>`
+      }
+      htmlString += `<form action="delete/${item.pk}" method="post" id="delete_form_${item.pk}">
         {% csrf_token %}
-        <input type="button" class='btn btn-danger my-1' onclick="submit_delete(${item.pk})" value="delete">
+        <input type="button" class='btn btn-danger my-1' onclick="submit_delete(${item.pk})" value="Hapus">
       </form></td>      
       <a href="ganti-status/${item.pk}" class="btn btn-primary">Ganti</a>`
       htmlString += `
@@ -108,11 +114,11 @@
     })  
     document.getElementById("isi_card").innerHTML = htmlString
   }
-  async function addWishlist() {
+  async function addTodolist() {
     fetch("{% url 'todolist:add' %}", {
       method: "POST",
       body: new FormData(document.querySelector('#form-1'))
-    }).then(refreshWishlist)
+    }).then(refreshTodolist)
     return false
   }
 
@@ -126,12 +132,12 @@
               $('#card'+id).remove().then()
           }
       }).then((response) => {
-        refreshWishlist()
+        refreshTodolist()
         return response
       });
   }
 
-  document.getElementById("button").onclick = addWishlist 
-  refreshWishlist()
+  document.getElementById("button").onclick = addTodolist 
+  refreshTodolist()
 </script>
 {% endblock content %}
