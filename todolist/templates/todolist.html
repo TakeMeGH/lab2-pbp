@@ -4,24 +4,7 @@
  <h3 class="text-center">Todolist {{nama}}</h3>
  <div class="container">
     <div class="row g-3" id="isi_card">
-        {% for each in todolist %}
-        <!-- <div class="col-12 col-sm-6 col-lg-4 py-3">
-          <div class="bg-image hover-overlay">
-            <div class="card-group">
-              <div class="card card-primary text-center">
-                <h5 class="card-header">{{each.title}}</h5>
-                <img class="rounded mx-auto d-block" src="https://i.ibb.co/xXX4S2Q/to-do-list-2.png" alt="to-do-list-2" border="2" width="200" height="200">
-                <div class="card-body" id="card-body-pertama"> -->
-                  <!-- <h5 class="card-title">{{each.description}}</h5>
-                  <p class="card-text">{{each.date}}</p>
-                  {% if each.is_finished %}
-                    <p class="text-center">Status : Sudah Selesai!</p>
-                  {% else %}
-                    <p class="text-center">Status : Belum Selesai!</p>
-                  {% endif %}
-                  <a href="{% url 'todolist:hapus_task' each.id %}" class="btn btn-danger">Hapus</a>
-                  <a href="{% url 'todolist:ganti_status' each.id %}" class="btn btn-primary">Ganti</a> -->
-              
+      {% for each in todolist %}
       {% endfor %}
     </div>
   </div>
